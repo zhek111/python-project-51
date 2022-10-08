@@ -11,7 +11,7 @@ package-install:
 	python3 -m pip install --user dist/*.whl --force-reinstall
 
 lint:
-	poetry run flake8
+	poetry run flake8 logic
 
 test:
 	poetry run pytest
