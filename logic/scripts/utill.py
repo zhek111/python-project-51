@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import argparse
+import os
 
 from logic.page_loader import download
 
@@ -11,7 +12,7 @@ def main():
     )
     parser.add_argument('URL')
     parser.add_argument('-o', '--output',
-                        default='stylish',
+                        default=os.getcwd(),
                         help='set path output')
     args = parser.parse_args()
     print(download(args.URL, output_path=args.output))
