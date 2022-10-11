@@ -3,6 +3,8 @@ from logic.page_loader import download
 
 
 def test_download(requests_mock):
+    file_with_download = open('tests/fixtures/with_download.html')
+    correct_data = file_with_download.read()
     with tempfile.TemporaryDirectory() as tmp:
         image1_file = open(
             'tests/fixtures/ru-hexlet-io-courses_files/cdn2-hexlet-io-assets'
@@ -57,9 +59,5 @@ def test_download(requests_mock):
         path_download_file = download('https://ru.hexlet.io/courses', tmp)
         download_file = open(path_download_file)
         expect_data = download_file.read()
-        file_with_download = open(
-            '/Users/evgeny/python-project-51/tests/fixtures/with_download'
-            '.html')
-        correct_data = file_with_download.read()
 
         assert expect_data == correct_data
