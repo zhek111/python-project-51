@@ -1,32 +1,61 @@
-from urllib.parse import urljoin
-
 import requests
 import re
 from os.path import splitext
 import os
-
 from bs4 import BeautifulSoup
+from urllib.parse import urljoin, urlparse
+import logging
+
+logging.basicConfig(level='DEBUG', filename='mylog.log')
+
+
+def get_name_data(path, url, dir=None):
+    full_path = urljoin(path, url)
+    name_file_without_extension = re.sub(r'\W', '-',
+                                         splitext(full_path)[0][8:])
+    if dir:
+        return f'{name_file_without_extension}_files'
+    if splitext(full_path)[1]:
+        return name_file_without_extension + splitext(full_path)[1]
+    if not splitext(full_path)[1]:
+        return f'{name_file_without_extension}.html'
+
+
+def check_domain(path1, path2):
+    if path2 is None:
+        return False
+    if not urlparse(path2).netloc:
+        return True
+    if urlparse(path2).netloc == urlparse(path1).netloc:
+        return True
+    return False
+
+
+def get_atrs(link):
+    if link.get('src'):
+        return {'url': link['src'], 'atr': 'srs'}
+    if link.get('href'):
+        return {'url': link['href'], 'atr': 'href'}
+    return {'url': None, 'atr': None}
 
 
 def download(path, output_path=os.getcwd()):
-    name_url = re.sub(r'\W', '-', splitext(path)[0][8:])
-    full_name = f"{output_path}/{name_url}.html"
+    full_path_page = os.path.join(output_path, get_name_data(path, path))
+    name_dir = os.path.join(output_path, get_name_data(path, path, dir=True))
     response = requests.get(path)
-    name_dir = f"{output_path}/{name_url}_files"
-    if not os.path.isdir(name_dir):
-        os.mkdir(name_dir)
-    os.chdir(name_dir)
     soup = BeautifulSoup(response.content, 'html.parser')
-    for link in soup.find_all('img'):
-        image = requests.get(link['src'])
-        full_url = urljoin(path, link['src'])
-        name_image = re.sub(r'\W', '-', splitext(full_url)[0][8:]) + \
-            splitext(full_url)[1]
-        with open(name_image, 'wb') as file:
-            file.write(image.content)
-        link['src'] = f'{name_url}_files/{name_image}'
-    with open(full_name, 'w+') as file:
+    for link in soup.find_all(['img', 'link', 'script']):
+        url = get_atrs(link).get('url')
+        if check_domain(path, url):
+            if not os.path.isdir(name_dir):
+                os.mkdir(name_dir)
+            os.chdir(name_dir)
+            data = requests.get(url)
+            name_file = get_name_data(path, url)
+            with open(name_file, 'wb') as file:
+                file.write(data.content)
+            link[get_atrs(link).get('atr')] = os.path.join(
+                get_name_data(path, path, dir=True), name_file)
+    with open(full_path_page, 'w+') as file:
         file.write(soup.prettify())
-    with open('AAA', 'wb') as file:
-        file.write(response.content)
-    return full_name
+    return full_path_page
