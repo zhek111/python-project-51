@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Новые уроки на Хекслете</title>
+    <description>Практические уроки по программированию</description>
+    <link>https://ru.hexlet.io/</link>
+    <webMaster>info@hexlet.io</webMaster>
+    <item>
+      <title>Клиент-серверная архитектура / Введение в интернет</title>
+      <guid isPermaLink="false">3055</guid>
+      <link>https://ru.hexlet.io/courses/internet-fundamentals/lessons/client-server/theory_unit</link>
+      <description>Цель: Изучить понятие клиент-серверной архитектуры и какие компоненты в неё входят. Разобраться с тем, кто является клиентом, а кто сервером и почему это разделение важно. Узнать о балансировщиках и кластерах</description>
+      <pubDate>Fri, 14 Oct 2022 08:43:55 +0000</pubDate>
+    </item>
+    <item>
+      <title>Обмен информацией между компьютерами / Введение в интернет</title>
+      <guid isPermaLink="false">3002</guid>
+      <link>https://ru.hexlet.io/courses/internet-fundamentals/lessons/tcp-ip/theory_unit</link>
+      <description>Цель: Узнаем, в каком виде компьютеры обмениваются информацией друг с другом. Разберем модель TCP/IP и остановимся подробнее на транспортном уровне</description>
+      <pubDate>Fri, 14 Oct 2022 08:43:55 +0000</pubDate>
+    </item>
+    <item>
+      <title>Flash / Python: Веб-разработка (Flask)</title>
+      <guid isPermaLink="false">3097</guid>
+      <link>https://ru.hexlet.io/courses/python-flask/lessons/flash/theory_unit</link>
+      <description>Цель: Научиться работать с одноразовыми сообщениями</description>
+      <pubDate>Wed, 12 Oct 2022 12:32:49 +0000</pubDate>
+    </item>
+    <item>
+      <title>Именованные маршруты / Python: Веб-разработка (Flask)</title>
+      <guid isPermaLink="false">3096</guid>
+      <link>https://ru.hexlet.io/courses/python-flask/lessons/named-routes/theory_unit</link>
+      <description>Цель: Научиться использовать более устойчивую систему для управления маршрутизацией</description>
+      <pubDate>Wed, 12 Oct 2022 12:32:49 +0000</pubDate>
+    </item>
+    <item>
+      <title>Модифицирующие формы / Python: Веб-разработка (Flask)</title>
+      <guid isPermaLink="false">3095</guid>
+      <link>https://ru.hexlet.io/courses/python-flask/lessons/post-form/theory_unit</link>
+      <description>Цель: Научиться изменять данные на сервере с помощью форм</description>
+      <pubDate>Wed, 12 Oct 2022 12:32:49 +0000</pubDate>
+    </item>
+    <item>
+      <title>Персистентность / Python: Веб-разработка (Flask)</title>
+      <guid isPermaLink="false">3094</guid>
+      <link>https://ru.hexlet.io/courses/python-flask/lessons/persistence/theory_unit</link>
+      <description>Цель: Узнать о том как хранить данные на постоянной основе</description>
+      <pubDate>Wed, 12 Oct 2022 12:32:49 +0000</pubDate>
+    </item>
+    <item>
+      <title>Поисковые формы / Python: Веб-разработка (Flask)</title>
+      <guid isPermaLink="false">3093</guid>
+      <link>https://ru.hexlet.io/courses/python-flask/lessons/get-form/theory_unit</link>
+      <description>Цель: Познакомиться с формами для фильтрации данных</description>
+      <pubDate>Wed, 12 Oct 2022 12:32:49 +0000</pubDate>
+    </item>
+    <item>
+      <title>Быстрые поэлементные операции / Работа с многомерными массивами данных с Python и Numpy</title>
+      <guid isPermaLink="false">3092</guid>
+      <link>https://ru.hexlet.io/courses/python-numpy/lessons/elementwise-operations/theory_unit</link>
+      <description>Цель: Арифметические операции над массивами разных размерностей</description>
+      <pubDate>Wed, 12 Oct 2022 06:55:24 +0000</pubDate>
+    </item>
+    <item>
+      <title>Локальные и глобальные сети / Введение в интернет</title>
+      <guid isPermaLink="false">3090</guid>
+      <link>https://ru.hexlet.io/courses/internet-fundamentals/lessons/lan-wan/theory_unit</link>
+      <description>Цель: Узнаем о локальной и глобальной сети. Изучим работу провайдеров и их уровни ответственности</description>
+      <pubDate>Tue, 11 Oct 2022 13:56:12 +0000</pubDate>
+    </item>
+    <item>
+      <title>Безопасность / Python: Веб-разработка (Flask)</title>
+      <guid isPermaLink="false">3089</guid>
+      <link>https://ru.hexlet.io/courses/python-flask/lessons/security/theory_unit</link>
+      <description>Цель: Познакомиться с основами создания безопасных сайтов</description>
+      <pubDate>Tue, 11 Oct 2022 10:55:56 +0000</pubDate>
+    </item>
+    <item>
+      <title>Оптимизация маршрутов / Теория графов</title>
+      <guid isPermaLink="false">2954</guid>
+      <link>https://ru.hexlet.io/courses/graphs/lessons/route/theory_unit</link>
+      <description>Цель: Рассматриваем, как работает оптимизация маршрутов</description>
+      <pubDate>Tue, 11 Oct 2022 09:58:32 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

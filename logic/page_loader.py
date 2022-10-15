@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
 import logging
 
-logging.basicConfig(level='DEBUG', filename='mylog.log')
+logging.basicConfig(level='DEBUG')
 
 
 def get_name_data(path, url, dir=None):
