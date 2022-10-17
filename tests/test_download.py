@@ -1,16 +1,22 @@
 import tempfile
 
 import pytest
+import requests
 
 from page_loader import download
 
 
-def test_error_download():
+def test_error_download(requests_mock):
     with pytest.raises(OSError):
+        initial_file = open('tests/fixtures/initial.html')
+        initial_data = initial_file.read()
+        requests_mock.get('https://ru.hexlet.io/courses', text=initial_data)
         download('https://ru.hexlet.io/courses', '/undefined')
 
 
-def test_error_download2():
+def test_error_download2(requests_mock):
+    requests_mock.get('https://ru.hexlettt.io/courses',
+                      exc=requests.exceptions.ConnectionError)
     response = download('https://ru.hexlettt.io/courses', '/etc')
     assert response == 'Введите другой сайт'
 

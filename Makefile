@@ -17,5 +17,5 @@ test:
 	poetry run pytest -vv
 
 test-cov:
-	poetry run pytest --cov=logic --cov-report xml
+	poetry run pytest --cov=page_loader --cov-report xml
 
