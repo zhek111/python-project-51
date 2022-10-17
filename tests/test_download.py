@@ -1,5 +1,18 @@
 import tempfile
-from logic.page_loader import download
+
+import pytest
+
+from page_loader import download
+
+
+def test_error_download():
+    with pytest.raises(OSError):
+        download('https://ru.hexlet.io/courses', '/undefined')
+
+
+def test_error_download2():
+    response = download('https://ru.hexlettt.io/courses', '/etc')
+    assert response == 'Введите другой сайт'
 
 
 def test_download(requests_mock):

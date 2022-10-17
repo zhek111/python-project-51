@@ -6,6 +6,8 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
 import logging
 
+from progress.bar import Bar
+
 logging.basicConfig(level='DEBUG')
 
 
@@ -40,17 +42,30 @@ def get_atrs(link):
 
 
 def download(path, output_path=os.getcwd()):
+    if not os.path.isdir(output_path):
+        raise OSError('Такая директория не существует')
+    try:
+        requests.get(path)
+    except requests.RequestException:
+        return 'Введите другой сайт'
     full_path_page = os.path.join(output_path, get_name_data(path, path))
     name_dir = os.path.join(output_path, get_name_data(path, path, dir=True))
     response = requests.get(path)
     soup = BeautifulSoup(response.content, 'html.parser')
-    for link in soup.find_all(['img', 'link', 'script']):
+    nessasary_tags = soup.find_all(['img', 'link', 'script'])
+    necessary_urls = []
+    for teg in nessasary_tags:
+        atrs = get_atrs(teg)
+        if check_domain(path, atrs.get('url')):
+            necessary_urls.append(atrs)
+    for link in nessasary_tags:
         url = get_atrs(link).get('url')
         if check_domain(path, url):
             if not os.path.isdir(name_dir):
                 os.mkdir(name_dir)
             os.chdir(name_dir)
-            data = requests.get(url)
+            for i in Bar('Processing').iter(necessary_urls):
+                data = requests.get(url)
             name_file = get_name_data(path, url)
             with open(name_file, 'wb') as file:
                 file.write(data.content)

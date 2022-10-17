@@ -2,7 +2,7 @@
 import argparse
 import os
 
-from logic.page_loader import download
+from page_loader.page_loader import download
 
 
 def main():
