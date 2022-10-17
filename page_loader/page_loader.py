@@ -47,7 +47,7 @@ def download(path, output_path=os.getcwd()):
     try:
         requests.get(path)
     except requests.RequestException:
-        return 'Введите другой сайт'
+        print('Введите другой сайт')
     full_path_page = os.path.join(output_path, get_name_data(path, path))
     name_dir = os.path.join(output_path, get_name_data(path, path, dir=True))
     response = requests.get(path)

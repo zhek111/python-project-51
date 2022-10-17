@@ -2,6 +2,7 @@ import tempfile
 
 import pytest
 import requests
+from requests import RequestException
 
 from page_loader import download
 
@@ -15,10 +16,11 @@ def test_error_download(requests_mock):
 
 
 def test_error_download2(requests_mock):
-    requests_mock.get('https://ru.hexlettt.io/courses',
+    with pytest.raises(requests.RequestException):
+        requests_mock.get('https://ru.hexlettt.io/courses',
                       exc=requests.exceptions.ConnectionError)
-    response = download('https://ru.hexlettt.io/courses', '/etc')
-    assert response == 'Введите другой сайт'
+        download('https://ru.hexlettt.io/courses')
+
 
 
 def test_download(requests_mock):
