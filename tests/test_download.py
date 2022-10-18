@@ -1,9 +1,9 @@
 import tempfile
 
 import pytest
-import requests
+
 from requests import RequestException
-from requests.exceptions import ConnectionError
+
 from page_loader import download
 
 
