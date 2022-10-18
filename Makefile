@@ -8,7 +8,7 @@ publish:
 	poetry publish --dry-run
 
 package-install:
-	python3 -m pip install dist/*.whl --force-reinstall
+	python3 -m pip install dist/*.whl
 
 lint:
 	poetry run flake8 page_loader tests
