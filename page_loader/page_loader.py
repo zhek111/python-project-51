@@ -47,12 +47,12 @@ def download(path, output_path=os.getcwd()):
     try:
         requests.get(path)
     except requests.RequestException:
-        print(requests.RequestException('Введите другой сайт'))
+        raise ConnectionError('Введите другой сайт')
     try:
         r = requests.get(path)
         r.raise_for_status()
     except requests.RequestException:
-        print(requests.RequestException('AAA'))
+        raise ConnectionError('AAA')
     full_path_page = os.path.join(output_path, get_name_data(path, path))
     name_dir = os.path.join(output_path, get_name_data(path, path, dir=True))
     response = requests.get(path)
