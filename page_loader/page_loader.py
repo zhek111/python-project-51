@@ -35,7 +35,7 @@ def check_domain(path1, path2):
 
 def get_atrs(link):
     if link.get('src'):
-        return {'url': link['src'], 'atr': 'srs'}
+        return {'url': link['src'], 'atr': 'src'}
     if link.get('href'):
         return {'url': link['href'], 'atr': 'href'}
     return {'url': None, 'atr': None}
