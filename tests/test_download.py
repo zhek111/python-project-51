@@ -2,7 +2,8 @@ import tempfile
 
 import pytest
 import requests
-
+from requests import RequestException
+from requests.exceptions import ConnectionError
 from page_loader import download
 
 
@@ -15,9 +16,9 @@ def test_error_download(requests_mock):
 
 
 def test_error_download2(requests_mock):
-    with pytest.raises(requests.RequestException):
+    with pytest.raises(RequestException):
         requests_mock.get('https://ru.hexlettt.io/courses',
-                          exc=requests.exceptions.ConnectionError)
+                          exc=RequestException)
         download('https://ru.hexlettt.io/courses')
 
 
