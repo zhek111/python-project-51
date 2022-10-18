@@ -70,7 +70,7 @@ def download(path, output_path=os.getcwd()):
                 os.mkdir(name_dir)
             os.chdir(name_dir)
             for i in Bar('Processing').iter(necessary_urls):
-                data = requests.get(url)
+                data = requests.get(urljoin(path, url))
             name_file = get_name_data(path, url)
             with open(name_file, 'wb') as file:
                 file.write(data.content)
