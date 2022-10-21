@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 import argparse
+import logging
 import os
 import sys
 
 from page_loader.page_loader import download
+
+logging.basicConfig(level='DEBUG')
 
 
 def main():

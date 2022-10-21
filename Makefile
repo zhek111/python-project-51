@@ -19,7 +19,7 @@ lint:
 	poetry run flake8 page_loader tests
 
 test:
-	poetry run pytest
+	poetry run pytest -vv
 
 test-cov:
 	poetry run pytest --cov=page_loader --cov-report xml
