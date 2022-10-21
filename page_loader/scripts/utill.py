@@ -19,7 +19,7 @@ def main():
     try:
         print(download(args.URL, output_path=args.output))
     except BaseException:
-        sys.exit(1)
+        sys.exit()
 
 
 if __name__ == '__main__':
