@@ -52,14 +52,14 @@ def download(path, output_path=os.getcwd()):
         requests.get(path)
     except requests.RequestException:
         print('Введите другой сайт!!!!AAAAAAAAAA')
-        raise requests.RequestException
+        raise Exception
     try:
         r = requests.get(path)
         r.raise_for_status()
     except HTTPError:
         print('AAA')
         logging.error('GGGGGGGTTTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG')
-        raise HTTPError
+        raise Exception
     full_path_page = os.path.join(output_path, get_name_data(path, path))
     name_dir = os.path.join(output_path, get_name_data(path, path, dir=True))
     response = requests.get(path)

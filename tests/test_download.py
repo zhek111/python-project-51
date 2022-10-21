@@ -15,7 +15,7 @@ def test_error_download(requests_mock):
 
 
 def test_error_download2(requests_mock):
-    with pytest.raises(requests.RequestException):
+    with pytest.raises(Exception):
         requests_mock.get('https://ru.hexlettt.io/courses',
                           exc=requests.RequestException)
         download('https://ru.hexlettt.io/courses')
