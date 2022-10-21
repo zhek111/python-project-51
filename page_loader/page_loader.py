@@ -47,16 +47,19 @@ def download(path, output_path=os.getcwd()):
         os.chdir(output_path)
     except OSError:
         print('Такая директория не существует')
+        raise OSError
     try:
         requests.get(path)
     except requests.RequestException:
         print('Введите другой сайт!!!!AAAAAAAAAA')
+        raise requests.RequestException
     try:
         r = requests.get(path)
         r.raise_for_status()
     except HTTPError:
         print('AAA')
         logging.error('GGGGGGGTTTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG')
+        raise HTTPError
     full_path_page = os.path.join(output_path, get_name_data(path, path))
     name_dir = os.path.join(output_path, get_name_data(path, path, dir=True))
     response = requests.get(path)
