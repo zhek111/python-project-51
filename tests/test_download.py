@@ -7,7 +7,7 @@ from page_loader import download
 
 
 def test_error_download(requests_mock):
-    with pytest.raises(OSError):
+    with pytest.raises(FileNotFoundError):
         initial_file = open('tests/fixtures/initial.html')
         initial_data = initial_file.read()
         requests_mock.get('https://ru.hexlet.io/courses', text=initial_data)
@@ -15,7 +15,7 @@ def test_error_download(requests_mock):
 
 
 def test_error_download2(requests_mock):
-    with pytest.raises(ConnectionError):
+    with pytest.raises(requests.RequestException):
         requests_mock.get('https://ru.hexlettt.io/courses',
                           exc=requests.RequestException)
         download('https://ru.hexlettt.io/courses')

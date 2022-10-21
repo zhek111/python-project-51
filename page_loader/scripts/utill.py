@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import argparse
 import os
+import sys
 
 from page_loader.page_loader import download
 
@@ -15,7 +16,10 @@ def main():
                         default=os.getcwd(),
                         help='set path output')
     args = parser.parse_args()
-    print(download(args.URL, output_path=args.output))
+    try:
+        print(download(args.URL, output_path=args.output))
+    except BaseException:
+        sys.exit(1)
 
 
 if __name__ == '__main__':
