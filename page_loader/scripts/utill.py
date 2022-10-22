@@ -21,8 +21,9 @@ def main():
     args = parser.parse_args()
     try:
         print(download(args.URL, output_path=args.output))
-    except BaseException:
-        sys.exit(0)
+    except Exception as e:
+        logging.debug(e)
+        sys.exit(1)
 
 
 if __name__ == '__main__':
