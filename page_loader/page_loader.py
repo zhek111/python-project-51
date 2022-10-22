@@ -13,9 +13,10 @@ logging.basicConfig(level='DEBUG')
 
 
 def get_name_data(path, url, dir=None):
-    full_path = urljoin(path, url)
+    aaa = urlparse(urljoin(path, url))
+    full_path = aaa.netloc + aaa.path
     name_file_without_extension = re.sub(r'\W', '-',
-                                         splitext(full_path)[0][8:])
+                                         splitext(full_path)[0])
     if dir:
         return f'{name_file_without_extension}_files'
     if splitext(full_path)[1]:
