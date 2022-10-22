@@ -41,54 +41,98 @@ def test_error_download2(requests_mock):
 #         expect_data = download_file.read()
 #         assert expect_data == correct_data
 
-def test_download2(requests_mock):
-    print(os.getcwd())
-    file_with_download = open(
-        'tests/fixtures/expected/localhost'
-        '-blog-about.html')
-    correct_data = file_with_download.read()
-    initial_file2 = open('tests/fixtures/localhost-blog-about.html')
-    initial_data2 = initial_file2.read()
+# def test_download2(requests_mock):
+#     with tempfile.TemporaryDirectory() as tmp:
+#         url_1 = open(
+#             'tests/fixtures/expected/localhost-blog-about_files/localhost'
+#             '-blog-about-assets-styles.css',
+#             'rb')
+#         data1 = url_1.read()
+#         requests_mock.get(
+#             'https://localhost/blog/about/assets/styles.css',
+#             content=data1)
+# 
+#         url_2 = open(
+#             'tests/fixtures/expected/localhost-blog-about_files/localhost'
+#             '-blog-about.html',
+#             'rb')
+#         data2 = url_2.read()
+#         requests_mock.get(
+#             'https://localhost/blog/about',
+#             content=data2)
+# 
+#         url_3 = open(
+#             'tests/fixtures/expected/localhost-blog-about_files/localhost'
+#             '-photos-me.jpg',
+#             'rb')
+#         data3 = url_3.read()
+#         requests_mock.get(
+#             'https://localhost/photos/me.jpg',
+#             content=data3)
+# 
+#         url_4 = open(
+#             'tests/fixtures/expected/localhost-blog-about_files/localhost'
+#             '-assets-scripts.js',
+#             'rb')
+#         data4 = url_4.read()
+#         requests_mock.get(
+#             'http://localhost/assets/scripts.js',
+#             content=data4)
+#         file_with_download = open(
+#             'tests/fixtures/expected/localhost'
+#             '-blog-about.html')
+#         correct_data = file_with_download.read()
+#         initial_file2 = open('tests/fixtures/localhost-blog-about.html')
+#         initial_data2 = initial_file2.read()
+#         requests_mock.get('https://localhost/blog/about', text=initial_data2)
+# 
+#         path_download_file = download('https://localhost/blog/about', tmp)
+#         download_file = open(path_download_file)
+#         expect_data = download_file.read()
+# 
+#         assert expect_data == correct_data
+
+def test_download3(requests_mock):
     with tempfile.TemporaryDirectory() as tmp:
         url_1 = open(
-            'tests/fixtures/expected/localhost-blog-about_files/localhost'
-            '-blog-about-assets-styles.css',
+            'tests/fixtures/expected/site-com-blog-about_files/site-com-blog-about-assets-styles.css',
             'rb')
         data1 = url_1.read()
         requests_mock.get(
-            'https://localhost/blog/about/assets/styles.css',
+            'https://site.com/blog/about/assets/styles.css',
             content=data1)
 
         url_2 = open(
-            'tests/fixtures/expected/localhost-blog-about_files/localhost'
-            '-blog-about.html',
+            'tests/fixtures/expected/site-com-blog-about_files/site-com-blog-about.html',
             'rb')
         data2 = url_2.read()
         requests_mock.get(
-            'https://localhost/blog/about',
+            'https://site.com/blog/about',
             content=data2)
 
         url_3 = open(
-            'tests/fixtures/expected/localhost-blog-about_files/localhost'
-            '-photos-me.jpg',
+            'tests/fixtures/expected/site-com-blog-about_files/site-com-photos-me.jpg',
             'rb')
         data3 = url_3.read()
         requests_mock.get(
-            'https://localhost/photos/me.jpg',
+            'https://site.com/photos/me.jpg',
             content=data3)
 
         url_4 = open(
-            'tests/fixtures/expected/localhost-blog-about_files/localhost'
-            '-assets-scripts.js',
+            'tests/fixtures/expected/site-com-blog-about_files/site-com-assets-scripts.js',
             'rb')
         data4 = url_4.read()
         requests_mock.get(
-            'http://localhost/assets/scripts.js',
+            'https://site.com/assets/scripts.js',
             content=data4)
+        file_with_download = open(
+            'tests/fixtures/expected/site-com-blog-about.html')
+        correct_data = file_with_download.read()
+        initial_file3 = open('tests/fixtures/site-com-blog-about.html')
+        initial_data3 = initial_file3.read()
+        requests_mock.get('https://site.com/blog/about', text=initial_data3)
 
-        requests_mock.get('https://localhost/blog/about', text=initial_data2)
-
-        path_download_file = download('https://localhost/blog/about', tmp)
+        path_download_file = download('https://site.com/blog/about', tmp)
         download_file = open(path_download_file)
         expect_data = download_file.read()
 
