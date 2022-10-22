@@ -58,7 +58,7 @@ def download(path, output_path=os.getcwd()):
         r.raise_for_status()
     except HTTPError:
         print('AAA')
-        logging.error('GGGGGGGTTTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG')
+        logging.debug('GGGGGGGTTTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG')
         raise
     full_path_page = os.path.join(output_path, get_name_data(path, path))
     name_dir = os.path.join(output_path, get_name_data(path, path, dir=True))

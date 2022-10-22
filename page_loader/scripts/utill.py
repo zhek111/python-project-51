@@ -23,6 +23,7 @@ def main():
         print(download(args.URL, output_path=args.output))
     except Exception as e:
         logging.debug(e)
+        print('XN')
         sys.exit(1)
 
 
