@@ -44,7 +44,7 @@ def test_error_download2(requests_mock):
 def test_download2(requests_mock):
     print(os.getcwd())
     file_with_download = open(
-        '/Users/evgeny/python-project-51/tests/fixtures/expected/localhost'
+        'tests/fixtures/expected/localhost'
         '-blog-about.html')
     correct_data = file_with_download.read()
     initial_file2 = open('tests/fixtures/localhost-blog-about.html')
