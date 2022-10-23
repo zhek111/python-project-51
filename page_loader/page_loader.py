@@ -76,11 +76,10 @@ def download(path, output_path=os.getcwd()):
         if check_domain(path, url):
             if not os.path.isdir(name_dir):
                 os.mkdir(name_dir)
-            os.chdir(name_dir)
             for i in Bar('Processing').iter(necessary_urls):
                 data = requests.get(urljoin(path, url))
             name_file = get_name_data(path, url)
-            with open(name_file, 'wb') as file:
+            with open(os.path.join(name_dir, name_file), 'wb') as file:
                 file.write(data.content)
             link[get_atrs(link).get('atr')] = os.path.join(
                 get_name_data(path, path, dir=True), name_file)
