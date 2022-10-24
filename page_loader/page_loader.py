@@ -47,7 +47,7 @@ def get_atrs(link):
 
 def download(path, output_path=os.getcwd()):
     logging.info(f"url: {path}, output_path: {output_path}")
-
+    os.chdir(output_path)
     r = requests.get(path)
     r.raise_for_status()
 
