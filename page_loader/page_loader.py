@@ -90,8 +90,8 @@ def download(path, output_path=os.getcwd()):
             for i in Bar('Processing').iter(necessary_urls):
                 data = requests.get(urljoin(path, url))
             name_file = get_name_data(path, url)
-            print('NAME FILE', name_file)
-            print('NAME DIR', name_dir)
+            logging.debug(('NAME FILE', name_file))
+            logging.debug(('NAME DIR', name_dir))
             with open(os.path.join(name_dir, name_file), 'wb') as file:
                 file.write(data.content)
             link[get_atrs(link).get('atr')] = os.path.join(
