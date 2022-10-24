@@ -1,4 +1,3 @@
-
 import tempfile
 
 from tests import get_path
@@ -31,7 +30,7 @@ def test_error_download2(requests_mock):
 def test_download(requests_mock, tempp):
     with tempp as tmp:
         url_1 = open(
-        get_path('ru-hexlet-io-lessons.rss', 'ru-hexlet-io-courses_files'),
+            get_path('ru-hexlet-io-lessons.rss', 'ru-hexlet-io-courses_files'),
             'rb')
         data1 = url_1.read()
         requests_mock.get(
@@ -97,7 +96,6 @@ def test_download2(requests_mock, tempp):
         download_file = open(path_download_file)
         expect_data = download_file.read()
         assert expect_data == correct_data
-
 
 # def test_download3(requests_mock, tempp):
 #     with tempp as tmp:
