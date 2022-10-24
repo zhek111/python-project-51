@@ -9,7 +9,7 @@ import logging
 from progress.bar import Bar
 from requests import HTTPError
 
-logging.basicConfig(level='DEBUG')
+logging.basicConfig(level=logging.DEBUG)
 
 
 def get_name_data(path, url, dir=None):
