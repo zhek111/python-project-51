@@ -6,7 +6,7 @@ import sys
 
 from page_loader.page_loader import download
 
-logging.basicConfig(level='DEBUG')
+logging.basicConfig(level='INFO')
 
 
 def main():
@@ -22,7 +22,7 @@ def main():
     try:
         print(download(args.URL, output_path=args.output))
     except Exception as e:
-        logging.debug(e)
+        logging.error(e)
         print('XN')
         sys.exit(1)
 
