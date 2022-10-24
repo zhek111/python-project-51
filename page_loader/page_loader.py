@@ -7,7 +7,6 @@ from urllib.parse import urljoin, urlparse
 import logging
 
 from progress.bar import Bar
-from requests import HTTPError
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -47,26 +46,17 @@ def get_atrs(link):
 
 
 def download(path, output_path=os.getcwd()):
+    logging.info(f"url: {path}, output_path: {output_path}")
     try:
         os.chdir(output_path)
     except OSError as e:
         logging.error(e)
         print('Такая директория не существует')
         raise
-    try:
-        requests.get(path)
-    except requests.RequestException as e:
-        logging.error(e)
-        print('Введите другой сайт!!!!AAAAAAAAAA')
-        raise
-    try:
-        r = requests.get(path)
-        r.raise_for_status()
-    except HTTPError as e:
-        logging.error(e)
-        print('AAA')
-        logging.debug('GGGGGGGTTTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG')
-        raise
+
+    r = requests.get(path)
+    r.raise_for_status()
+
     full_path_page = os.path.join(output_path, get_name_data(path, path))
     logging.debug(full_path_page)
     name_dir = os.path.join(output_path, get_name_data(path, path, dir=True))
