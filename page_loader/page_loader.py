@@ -46,18 +46,21 @@ def get_atrs(link):
 def download(path, output_path=os.getcwd()):
     try:
         os.chdir(output_path)
-    except OSError:
+    except OSError as e:
+        logging.error(e)
         print('Такая директория не существует')
         raise
     try:
         requests.get(path)
-    except requests.RequestException:
+    except requests.RequestException as e:
+        logging.error(e)
         print('Введите другой сайт!!!!AAAAAAAAAA')
         raise
     try:
         r = requests.get(path)
         r.raise_for_status()
-    except HTTPError:
+    except HTTPError as e:
+        logging.error(e)
         print('AAA')
         logging.debug('GGGGGGGTTTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG')
         raise
