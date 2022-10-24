@@ -10,16 +10,16 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description='downloads page from the network and puts it in the '
-                    'specified existing directory'
-    )
-    parser.add_argument('URL')
-    parser.add_argument('-o', '--output',
-                        default=os.getcwd(),
-                        help='set path output')
-    args = parser.parse_args()
     try:
+        parser = argparse.ArgumentParser(
+            description='downloads page from the network and puts it in the '
+                        'specified existing directory'
+        )
+        parser.add_argument('URL')
+        parser.add_argument('-o', '--output',
+                            default=os.getcwd(),
+                            help='set path output')
+        args = parser.parse_args()
         print(download(args.URL, output_path=args.output))
     except Exception as e:
         logging.error(e)
