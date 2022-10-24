@@ -6,7 +6,7 @@ import sys
 
 from page_loader.page_loader import download
 
-logging.basicConfig(level='INFO')
+logging.basicConfig(level=logging.DEBUG)
 
 
 def main():
