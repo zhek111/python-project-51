@@ -1,35 +1,27 @@
-
 import tempfile
-
-from tests import get_path
 import pytest
 import requests
-
+from tests import get_path
 from page_loader import download
 
 
-@pytest.fixture
-def tempp():
-    return tempfile.TemporaryDirectory()
+def test_non_existent_directory(requests_mock):
+    with pytest.raises(FileNotFoundError):
+        with open('tests/fixtures/initial.html') as file:
+            data = file.read()
+            requests_mock.get('https://ru.hexlet.io/courses', text=data)
+            download('https://ru.hexlet.io/courses', '/undefined')
 
 
-def test_error_download(requests_mock):
-    with pytest.raises(OSError):
-        initial_file = open('tests/fixtures/initial.html')
-        initial_data = initial_file.read()
-        requests_mock.get('https://ru.hexlet.io/courses', text=initial_data)
-        download('https://ru.hexlet.io/courses', '/undefined')
-
-
-def test_error_download2(requests_mock):
+def test_non_existent_site(requests_mock):
     with pytest.raises(Exception):
         requests_mock.get('https://ru.hexlettt.io/courses',
                           exc=requests.RequestException)
         download('https://ru.hexlettt.io/courses')
 
 
-def test_download(requests_mock, tempp):
-    with tempp as tmp:
+def test_download(requests_mock):
+    with tempfile.TemporaryDirectory() as tmp:
         url_1 = open(
             get_path('ru-hexlet-io-lessons.rss', 'ru-hexlet-io-courses_files'),
             'rb')
@@ -48,8 +40,8 @@ def test_download(requests_mock, tempp):
         assert expect_data == correct_data
 
 
-def test_download2(requests_mock, tempp):
-    with tempp as tmp:
+def test_download2(requests_mock):
+    with tempfile.TemporaryDirectory() as tmp:
         url_1 = open(get_path(
             'localhost-blog-about-assets-styles.css',
             'expected',
@@ -99,8 +91,8 @@ def test_download2(requests_mock, tempp):
         assert expect_data == correct_data
 
 
-def test_download3(requests_mock, tempp):
-    with tempp as tmp:
+def test_download3(requests_mock):
+    with tempfile.TemporaryDirectory() as tmp:
         url_1 = open(get_path(
             'site-com-blog-about-assets-styles.css',
             'expected',
