@@ -1,11 +1,8 @@
 from urllib.parse import urlparse
 
 
-def check_domain(path1: str, path2: str) -> bool:
-    if path2 is None:
+def is_valid(url1: str, url2: str) -> bool:
+    if url2 is None:
         return False
-    if not urlparse(path2).netloc:
-        return True
-    if urlparse(path2).netloc == urlparse(path1).netloc:
-        return True
-    return False
+    return not (netloc2 := urlparse(url2).netloc
+                ) or netloc2 == urlparse(url1).netloc

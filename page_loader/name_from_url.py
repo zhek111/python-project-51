@@ -3,7 +3,7 @@ from os.path import splitext
 from urllib.parse import urlparse, urljoin
 
 
-def get_name_data(path: str, url: str, dir: bool = False) -> str:
+def get_name_from_url(path: str, url: str, dir: bool = False) -> str:
     parse_url = urlparse(urljoin(path, url))
     full_path = parse_url.netloc + parse_url.path
     name_file_without_extension = re.sub(r'\W', '-',
