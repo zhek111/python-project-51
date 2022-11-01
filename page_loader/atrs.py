@@ -1,6 +1,6 @@
-def get_atrs(link: dict) -> dict[str]:
-    if link.get('src'):
-        return {'url': link['src'], 'atr': 'src'}
-    if link.get('href'):
-        return {'url': link['href'], 'atr': 'href'}
+def get_atr_and_url(tag: dict) -> dict[str]:
+    if tag.get('src'):
+        return {'url': tag['src'], 'atr': 'src'}
+    if tag.get('href'):
+        return {'url': tag['href'], 'atr': 'href'}
     return {'url': None, 'atr': None}
