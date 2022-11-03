@@ -1,9 +1,16 @@
-from page_loader.atrs import get_atr_and_url
+import bs4
+
 from page_loader.domain import is_valid
 
+TAGS = {
+    'img': 'src',
+    'link': 'href',
+    'script': 'src'
+}
 
-def get_required_tags(site, required_tags):
-    def inner(tag):
+
+def get_valid_tags(site: str, required_tags: dict):
+    def inner(tag: bs4) -> bool:
         if tag.name in required_tags:
-            return is_valid(site, get_atr_and_url(tag).get('url'))
+            return is_valid(site, tag.get(TAGS[tag.name]))
     return inner

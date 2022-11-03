@@ -6,6 +6,6 @@ def get_fixture_path(*path):
                         *path)
 
 
-def read_file(file, type='r'):
-    with open(file, type) as file:
+def read_file(path, mode='r'):
+    with open(path, mode) as file:
         return file.read()
