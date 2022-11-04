@@ -5,10 +5,9 @@ import requests
 from page_loader.cli import parse
 from page_loader.page_loader import download
 
-logging.basicConfig(level=logging.ERROR)
-
 
 def main():
+    logging.basicConfig(level=logging.ERROR)
     try:
         args = parse()
         print(download(args.URL, output_path=args.output))

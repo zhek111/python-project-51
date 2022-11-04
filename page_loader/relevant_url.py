@@ -1,6 +1,6 @@
 import bs4
 
-from page_loader.domain import is_valid
+from page_loader.urls import is_valid_domain
 
 TAGS = {
     'img': 'src',
@@ -12,5 +12,5 @@ TAGS = {
 def get_valid_tags(site: str, required_tags: dict):
     def inner(tag: bs4) -> bool:
         if tag.name in required_tags:
-            return is_valid(site, tag.get(TAGS[tag.name]))
+            return is_valid_domain(site, tag.get(TAGS[tag.name]))
     return inner

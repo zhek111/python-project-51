@@ -23,11 +23,11 @@ def prepare_html_and_media_files(url: str, output_path: str) -> (
             name_file = make_name_from_url(url, media_file_url)
             tag[TAGS[tag.name]] = os.path.join(
                 make_name_from_url(url, url, is_dir=True), name_file)
-            path_ = os.path.join(name_dir, name_file)
+            file_full_path = os.path.join(name_dir, name_file)
             media_files_urls_and_path.append(
                 {
                     'url': media_file_url,
-                    'path': path_
+                    'path': file_full_path
                 }
             )
     return media_files_urls_and_path, soup.prettify()

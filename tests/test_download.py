@@ -1,6 +1,8 @@
 import os
 import pytest
 import requests
+from page_loader.urls import make_name_from_url
+
 from tests import get_fixture_path, read_file
 from page_loader import download
 
@@ -68,21 +70,17 @@ def test_non_existent_site(requests_mock):
 
 
 @pytest.mark.parametrize(
-    "fixtures, site, file, dir, count_files",
+    "fixtures, site_url, count_files",
     [
         pytest.param(
             FIXTURES_HEXLET_IO,
             'https://ru.hexlet.io/courses',
-            'ru-hexlet-io-courses.html',
-            'ru-hexlet-io-courses_files',
             2,
             id="hexlet_io"
         ),
         pytest.param(
             FIXTURES_SITE_COM,
             'https://site.com/blog/about',
-            'site-com-blog-about.html',
-            'site-com-blog-about_files',
             4,
             id="site_com"
         )
@@ -90,9 +88,7 @@ def test_non_existent_site(requests_mock):
 )
 def test_download(
         fixtures,
-        site,
-        file,
-        dir,
+        site_url,
         count_files,
         tmp_path,
         requests_mock):
@@ -101,17 +97,19 @@ def test_download(
         data_content = read_file(expected_fixture_content, 'rb')
         requests_mock.get(fixture['url'], content=data_content)
 
-    expected_html = get_fixture_path('expected', file)
-    correct_data = read_file(expected_html)
+    expected_file_path = make_name_from_url(site_url, site_url)
 
-    initial_file_html = get_fixture_path(file)
+    expected_html_path = get_fixture_path('expected', expected_file_path)
+    expected_html_content = read_file(expected_html_path)
+
+    initial_file_html = get_fixture_path(expected_file_path)
     initial_data = read_file(initial_file_html)
 
-    requests_mock.get(site, text=initial_data)
+    requests_mock.get(site_url, text=initial_data)
 
-    recieved_path_after_download = download(site, tmp_path)
-    data_after_download = read_file(recieved_path_after_download)
-
+    recieved_path_after_download = download(site_url, tmp_path)
+    downloaded_html_content = read_file(recieved_path_after_download)
+    dir = make_name_from_url(site_url, site_url, is_dir=True)
     count_files = len(next(os.walk(get_fixture_path(tmp_path, dir)))[2])
-    assert data_after_download == correct_data
+    assert downloaded_html_content == expected_html_content
     assert count_files == count_files
