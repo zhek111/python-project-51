@@ -21,7 +21,7 @@ pytest-cov = "^4.0.0"
 requests-mock = "^1.10.0"
 
 [tool.poetry.scripts]
-page-loader = "page_loader.scripts.utill:main"
+page-loader = "page_loader.scripts.util:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
