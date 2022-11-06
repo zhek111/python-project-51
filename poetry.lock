@@ -285,14 +285,6 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
-name = "urljoin"
-version = "1.0.0"
-description = "join URL paths"
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "urllib3"
 version = "1.26.12"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -308,7 +300,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "90d8a0fbe3977b566dfbbccdbbf177746d2e799a37ab8f851fb950691731dabf"
+content-hash = "26a88df888d27d2aebb2ca2870118f97b0c88987f5d3ea87e143faddea451602"
 
 [metadata.files]
 attrs = []
@@ -355,5 +347,4 @@ soupsieve = [
 ]
 toml = []
 tomli = []
-urljoin = []
 urllib3 = []
