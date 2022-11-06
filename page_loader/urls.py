@@ -16,11 +16,11 @@ def make_name_from_url(
         is_dir: bool = False) -> str:
     parse_url = urlparse(urljoin(site_url, internal_url))
     full_path = parse_url.netloc + parse_url.path
-    name_file_without_extension = re.sub(r'\W', '-', (
-        divided_path := splitext(full_path))[0])
+    path, extension = splitext(full_path)
+    name_file_without_extension = re.sub(r'\W', '-', path)
     if is_dir:
         return f'{name_file_without_extension}_files'
-    if extension := divided_path[1]:
+    if extension:
         return name_file_without_extension + extension
     if not extension:
         return f'{name_file_without_extension}.html'
