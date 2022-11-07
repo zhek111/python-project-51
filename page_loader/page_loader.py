@@ -16,11 +16,11 @@ def download_media_files(urls_and_paths: list[dict]):
                                'wb')
 
 
-def download(site: str, output_path: [str, Path] = os.getcwd()) -> str:
+def download(url: str, output_path: [str, Path] = os.getcwd()) -> str:
     if not os.path.isdir(output_path):
         raise FileNotFoundError
-    full_path_page = os.path.join(output_path, make_name_from_url(site, site))
-    urls_and_paths, file_full_path = prepare_html_and_media_files(site,
+    full_path_page = os.path.join(output_path, make_name_from_url(url, url))
+    urls_and_paths, file_full_path = prepare_html_and_media_files(url,
                                                                   output_path)
     download_media_files(urls_and_paths)
     write_data_to_file(file_full_path, full_path_page, 'w+')

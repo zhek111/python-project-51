@@ -109,7 +109,7 @@ def test_download(
 
     recieved_path_after_download = download(site_url, tmp_path)
     downloaded_html_content = read_file(recieved_path_after_download)
-    dir = make_name_from_url(site_url, site_url, is_dir=True)
-    count_files = len(next(os.walk(get_fixture_path(tmp_path, dir)))[2])
+    name_dir = make_name_from_url(site_url, site_url, is_dir=True)
+    count_files = len(next(os.walk(get_fixture_path(tmp_path, name_dir)))[2])
     assert downloaded_html_content == expected_html_content
     assert count_files == count_files

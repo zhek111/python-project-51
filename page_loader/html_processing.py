@@ -14,16 +14,17 @@ def prepare_html_and_media_files(url: str, output_path: str) -> (
     nessasary_tags = soup.find_all(get_valid_tags(url, TAGS))
     media_files_urls_and_path = list()
     if nessasary_tags:
-        name_dir = os.path.join(output_path,
-                                make_name_from_url(url, url, is_dir=True))
-        if not os.path.isdir(name_dir):
-            os.mkdir(name_dir)
+        media_files_dir_full_path = os.path.join(
+            output_path,
+            name_dir := make_name_from_url(url, url, is_dir=True)
+        )
+        if not os.path.isdir(media_files_dir_full_path):
+            os.mkdir(media_files_dir_full_path)
         for tag in nessasary_tags:
             media_file_url = urljoin(url, tag.get(TAGS[tag.name]))
             name_file = make_name_from_url(url, media_file_url)
-            tag[TAGS[tag.name]] = os.path.join(
-                make_name_from_url(url, url, is_dir=True), name_file)
-            file_full_path = os.path.join(name_dir, name_file)
+            tag[TAGS[tag.name]] = os.path.join(name_dir, name_file)
+            file_full_path = os.path.join(media_files_dir_full_path, name_file)
             media_files_urls_and_path.append(
                 {
                     'url': media_file_url,
